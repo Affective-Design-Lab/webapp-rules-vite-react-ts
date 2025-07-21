@@ -3,61 +3,50 @@ description: Tailwind CSS v4の正しい設定方法
 alwaysApply: false
 ---
 
-# 🎨 Tailwind CSS v4 セットアップ（Vite使用）
-
-⚠️ **重要**: Tailwind CSS v4から設定方法が大幅に変更されました。従来の `npx tailwindcss init -p` は使用しません。
+# Tailwind CSS v4 セットアップ
 
 ## インストール手順
 
-1. **パッケージインストール**
-   ```bash
-   npm install tailwindcss @tailwindcss/vite
-   ```
-   - `tailwindcss` と `@tailwindcss/vite` プラグインをインストール
+### 1. パッケージインストール
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
 
-2. **Vite設定**
-   `vite.config.ts` を以下のように設定:
-   ```ts
-   import { defineConfig } from 'vite'
-   import react from '@vitejs/plugin-react'
-   import tailwindcss from '@tailwindcss/vite'
+### 2. Vite設定
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
-   export default defineConfig({
-     plugins: [react(), tailwindcss()],
-   })
-   ```
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+})
+```
 
-3. **CSS設定**
-   `src/index.css` に以下を記述:
-   ```css
-   @import "tailwindcss";
-   ```
+### 3. CSS設定
+```css
+/* src/index.css */
+@import "tailwindcss";
+```
 
-## 従来の方法からの変更点
+## 従来との違い
+- ❌ `npx tailwindcss init -p` 不要
+- ❌ `tailwind.config.js` 不要  
+- ❌ `@tailwind base/components/utilities` 不要
+- ✅ `@tailwindcss/vite` プラグイン使用
+- ✅ `@import "tailwindcss"` でインポート
 
-- ❌ `npx tailwindcss init -p` コマンドは使用しない
-- ❌ `tailwind.config.js` と `postcss.config.js` は作成不要
-- ❌ `@tailwind base;` `@tailwind components;` `@tailwind utilities;` は不要
-- ✅ `@tailwindcss/vite` プラグインを使用
-- ✅ `@import "tailwindcss";` でインポート
-
-## 確認方法
-
+## 動作確認
 ```tsx
 function App() {
   return (
     <h1 className="text-4xl font-bold text-blue-600">
-      Tailwind CSS v4が動作しています！
+      Tailwind v4 動作中！
     </h1>
   )
 }
 ```
-
-## よくあるエラーと解決策
-
-- **`npx tailwindcss init -p` エラー**: v4では使用不要
-- **スタイルが適用されない**: `@import "tailwindcss";` が正しく記述されているか確認
-- **Viteプラグインエラー**: `@tailwindcss/vite` がインストール済みか確認
 
 ## 参考リンク
 

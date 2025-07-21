@@ -2,20 +2,19 @@
 description: "Vite + React + TypeScript環境でのShadcn UI正しいセットアップ方法"
 ---
 
-# 🧩 Shadcn UI + Vite セットアップガイド
+# Shadcn UI セットアップ
 
-**説明**: Vite + React + TypeScript環境でのShadcn UI正しいセットアップ方法。
+Vite + React + TypeScript環境での正しいセットアップ方法
 
 ## 前提条件
-- Vite + React + TypeScript プロジェクトが作成済み
-- Tailwind CSS v4 がセットアップ済み（@tailwindcss/viteプラグイン使用）
+- Vite + React + TypeScript プロジェクト
+- Tailwind CSS v4 セットアップ済み
 
 ## 必須手順
 
-### 1. TypeScript設定の修正
-
-#### a) メインtsconfig.json
+### 1. TypeScript設定
 ```json
+// tsconfig.json
 {
   "files": [],
   "references": [
@@ -31,11 +30,10 @@ description: "Vite + React + TypeScript環境でのShadcn UI正しいセット�
 }
 ```
 
-#### b) tsconfig.app.json にpath mapping追加
 ```json
+// tsconfig.app.json に追加
 {
   "compilerOptions": {
-    // ... 既存の設定
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
@@ -44,11 +42,10 @@ description: "Vite + React + TypeScript環境でのShadcn UI正しいセット�
 }
 ```
 
-#### c) tsconfig.node.json にNode.js型定義を追加
 ```json
+// tsconfig.node.json に追加
 {
   "compilerOptions": {
-    // ... 既存の設定
     "types": ["node"]
   }
 }
@@ -59,8 +56,9 @@ description: "Vite + React + TypeScript環境でのShadcn UI正しいセット�
 npm install --save-dev @types/node
 ```
 
-### 3. Vite設定の修正 (vite.config.ts)
+### 3. Vite設定
 ```ts
+// vite.config.ts
 import path from "path"
 import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
@@ -81,36 +79,10 @@ export default defineConfig({
 npx shadcn@latest init
 ```
 
-## よくあるエラーと解決策
-
-### エラー: "No import alias found"
-- **原因**: shadcnがtsconfig.jsonでpath mappingを見つけられない
-- **解決**: メインのtsconfig.jsonにpaths設定を追加
-
-### エラー: "__dirname is not defined"
-- **原因**: ESModuleで__dirnameが使用できない
-- **解決**: tsconfig.node.jsonに`"types": ["node"]`を追加
-
-### エラー: "Cannot find module 'path'"
-- **原因**: Node.jsの型定義が不足
-- **解決**: `npm install --save-dev @types/node`
-
-## 設定確認コマンド
-```bash
-# 型エラーをチェック
-npx tsc --noEmit
-
-# shadcnの初期化
-npx shadcn@latest init
-
-# コンポーネント追加例
-npx shadcn@latest add button
-```
-
-## 注意点
-- **重要**: メインのtsconfig.jsonにもpaths設定が必要（参照するだけではshadcnが認識しない）
-- Tailwind CSS v4を使用する場合、従来のconfig.jsは不要
-- @tailwindcss/viteプラグインを使用すること
+## トラブルシューティング
+- "No import alias found" → メインtsconfig.jsonにpaths追加
+- "__dirname is not defined" → tsconfig.node.jsonに"types": ["node"]追加
+- "Cannot find module 'path'" → `npm install --save-dev @types/node`
 
 ## 参考リンク
 - [Shadcn UI Vite Installation](https://ui.shadcn.com/docs/installation/vite)
