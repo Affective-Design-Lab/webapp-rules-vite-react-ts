@@ -22,7 +22,9 @@ description: "プロジェクトの技術選定とアーキテクチャの基本
 
 ### プロジェクト初期化
 ```bash
-npm create vite@latest . -- --template react-ts
+npm create vite@latest ./vite-tmp -- --template react-ts
+mv ./vite-tmp/* ./
+rm -rf ./vite-tmp
 ```
 
 ### 実装指針
@@ -50,6 +52,13 @@ npm create vite@latest . -- --template react-ts
 `npm run dev` で動作確認ができます。
 表示されたURLをブラウザで開いてください。
 ```
+
+# Figma MCP
+- Figma Dev Mode MCPサーバーは、画像やSVGアセットを提供するアセットエンドポイントを提供します。
+- clientLanguages: html, css, typescript
+- clientFrameworks: react, tailwind
+- 重要: Figma Dev Mode MCP サーバーが画像またはSVGのローカルホストソースを返す場合、その画像またはSVGソースを直接使用してください。
+- 重要: ローカルホストソースが提供されている場合、プレースホルダーを使用または作成しないでください。
 
 # 関連ルール
 - Tailwind CSS v4: 具体的なセットアップについては、専用ルール `.cursor/tailwind-v4.md` を参照してください。
