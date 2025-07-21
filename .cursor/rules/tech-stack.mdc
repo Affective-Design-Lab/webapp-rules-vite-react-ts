@@ -32,15 +32,6 @@ rm -rf ./vite-tmp
 - **コンポーネント分割**: コードの可読性を重視
 - **画像取得**: Figma MCP `get_code` → `curl`でダウンロード
 
-### スタイリング
-- UIライブラリ: Shadcn UIを基本とし、コンポーネントのスタイルをカスタマイズしてください。
-- スタイル確認: スタイルの詳細（変数など）は figmaの `get-variable-defs` を使用して確認してください。
-
-### 静的アセットの扱い
-- 画像: Figmaのデザインに含まれる画像はダウンロードし、静的ファイルの配置場所に保存して使用してください。
-    - `figma` mcpの `get_code` を使用すると画像のURLを取得できます．そのアドレスから `curl` で画像をダウンロードしてください．
-    - 例: `curl -o ./public/images/logo.svg http://localhost:3845/assets/daf8f94040483a9cc8098bb14546ed545c30bad2.svg`
-
 ### 完了時の確認
 1. ビルドエラーの確認・修正
 2. 動作確認方法を学習者に案内
@@ -58,7 +49,9 @@ rm -rf ./vite-tmp
 - clientLanguages: html, css, typescript
 - clientFrameworks: react, tailwind
 - 重要: Figma Dev Mode MCP サーバーが画像またはSVGのローカルホストソースを返す場合、その画像またはSVGソースを直接使用してください。
+    - 例: `curl -o ./public/images/logo.svg http://localhost:3845/assets/daf8f94040483a9cc8098bb14546ed545c30bad2.svg`
 - 重要: ローカルホストソースが提供されている場合、プレースホルダーを使用または作成しないでください。
+- スタイル確認: スタイルの詳細（変数など）は figmaの `get-variable-defs` を使用して確認してください。
 
 # 関連ルール
 - Tailwind CSS v4: 具体的なセットアップについては、専用ルール `.cursor/tailwind-v4.md` を参照してください。
